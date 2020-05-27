@@ -1,0 +1,101 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title></title>
+    <link href="/images/csstg.css" rel="stylesheet" type="text/css" />
+
+
+    <script type="text/javascript">
+        //关闭窗口
+        function Close() {
+            window.external.close();
+        }
+        //保存页面
+        function Save() {
+            document.getElementById("PageOfficeCtrl1").WebSave();
+        }
+
+        //添加印章
+        function AddSeal() {
+            document.getElementById("PageOfficeCtrl1").ZoomSeal.AddSeal("", "");
+        }
+        //无需输入用户名和密码，添加印章
+        function AddSeal2() {
+            var user = "@Html.Raw(ViewBag.userName)";
+            document.getElementById("PageOfficeCtrl1").ZoomSeal.AddSeal(user, "");
+        }
+        //签字
+        function AddSign() {
+            document.getElementById("PageOfficeCtrl1").ZoomSeal.AddHandSign("", "");
+        }
+        //无需输入用户名和密码，签字
+        function AddSign2() {
+            var user = "@Html.Raw(ViewBag.userName)";
+            document.getElementById("PageOfficeCtrl1").ZoomSeal.AddHandSign(user, "");
+        }
+        //全屏/还原
+        function IsFullScreen() {
+            document.getElementById("PageOfficeCtrl1").FullScreen = !document.getElementById("PageOfficeCtrl1").FullScreen;
+        }
+    </script>
+</head>
+<body>
+
+    <div id="header">
+        <div style="float: left; margin-left: 20px;">
+            <img src="/images/logo.jpg" height="30" />
+        </div>
+        <ul>
+            <li>
+                <a target="_blank" href="http://www.zhuozhengsoft.com">卓正网站</a>
+            </li>
+            <li>
+                <a target="_blank"
+                   href="http://www.zhuozhengsoft.com/poask/index.asp">客户问吧</a>
+            </li>
+            <li>
+                <a href="#">在线帮助</a>
+            </li>
+            <li>
+                <a target="_blank"
+                   href="http://www.zhuozhengsoft.com/contact-us.html">联系我们</a>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="textcontent" style="width: 1000px; height: 800px;">
+            <div class="flow4">
+                <a href="javascript:Close()">
+                    <img alt="返回" src="/images/return.gif"
+                         border="0" />返回登录页
+                </a>
+                <strong>当前用户：</strong>
+                <span style="color: Red;">@Html.Raw(ViewBag.userName)</span>
+                <strong>印章密码：</strong>
+                <span style="color: red;">123456</span>
+                <br /><br />
+                <span style="color: Red; font-size:12px;">“盖章方式一”：</span>需要输入印章用户名和密码才可以盖章<br />
+                <span style="color: Red;font-size:12px;">“盖章方式二”：</span>不需要输入印章用户名和密码<br />
+                <span style="color: Red; font-size:12px;">“签字方式一”：</span>需要输入用户名和密码才可以签字<br />
+                <span style="color: Red;font-size:12px;">“签字方式二”：</span>不需要输入用户名和密码<br />
+            </div>
+
+            <!--**************   卓正 PageOffice组件 ************************-->
+            @Html.Raw(ViewBag.POCtrl)
+        </div>
+    </div>
+    <div id="footer">
+        <hr width="1000" />
+        <div>
+            Copyright (c) 2012 北京卓正志远软件有限公司
+        </div>
+    </div>
+
+</body>
+</html>
+
